@@ -1,9 +1,9 @@
 import { getCurrentDateTime } from './helpers.js';
 
-export const renderWidgetToday = (widget) => {
+export const renderWidgetToday = (widget, data) => {
   const { dayOfMonths, month, year, hours, minutes, dayOfWeek } =
     getCurrentDateTime();
-
+  console.log(data);
   widget.insertAdjacentHTML(
     'beforeend',
     `
@@ -14,19 +14,25 @@ export const renderWidgetToday = (widget) => {
           <p class="widget__day">${dayOfWeek}</p>
         </div>
         <div class="widget__icon">
-          <img class="widget__img" src="./icon/01d.svg" alt="Погода" />
+          <img class="widget__img" src="./icon/${
+            data.weather[0].icon
+          }.svg" alt="Погода" />
         </div>
         <div class="widget__wheather">
           <div class="widget__city">
-            <p>Калининград</p>
+            <p>${data.name}</p>
             <button
               class="widget__change-city"
               aria-label="Изменить город"
             ></button>
           </div>
-          <p class="widget__temp-big">19.3°C</p>
+          <p class="widget__temp-big">${(data.main.temp - 273.15).toFixed(
+            1
+          )}°C</p>
           <p class="widget__felt">ощущается</p>
-          <p class="widget__temp-small">18.8 °C</p>
+          <p class="widget__temp-small">${(
+            data.main.feels_like - 273.15
+          ).toFixed(1)}°C</p>
         </div>
       </div>
   `
@@ -88,4 +94,9 @@ export const renderWidgetForecast = (widget) => {
       </ul>
         `
   );
+};
+
+export const showError = (widget, error) => {
+  widget.textContent = error.toString();
+  widget.classList.add('widget_error');
 };
