@@ -67,7 +67,7 @@ export const getWeatherForecastData = (data) => {
 
   const forecastData = forecast.map((item) => {
     const date = new Date(item.dt_txt);
-    const weekdaysShort = ['вc', 'пy', 'вт', 'ср', 'че', 'пт', 'сб'];
+    const weekdaysShort = ['вc', 'пн', 'вт', 'ср', 'че', 'пт', 'сб'];
     const dayOfWeek = weekdaysShort[date.getDay()];
     const weatherIcon = item.weather[0].icon;
     let minTemp = Infinity;
