@@ -5,8 +5,7 @@ import {
   renderWidgetToday,
 } from './render.js';
 
-export const startWidget = async () => {
-  const city = 'Барановичи';
+export const startWidget = async (city) => {
   const widget = document.createElement('div');
   widget.classList.add('widget');
 
