@@ -8,7 +8,6 @@ import {
 export const renderWidgetToday = (widget, data) => {
   const { dayOfMonths, month, year, hours, minutes, dayOfWeek } =
     getCurrentDateTime();
-  console.log(data);
   widget.insertAdjacentHTML(
     'beforeend',
     `

@@ -1,4 +1,6 @@
-export const cityServiceSearch = (app) => {
+import { startWidget } from './widgetService.js';
+
+export const cityServiceSearch = (widget) => {
   const button = document.querySelector('.widget__change-city');
 
   button.addEventListener('click', () => {
@@ -11,8 +13,17 @@ export const cityServiceSearch = (app) => {
     input.placeholder = 'Введите город';
 
     form.append(input);
-    app.append(form);
+    widget.append(form);
 
     input.focus();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      widget.textContent = '';
+
+      await startWidget(input.value, widget);
+      cityServiceSearch(widget);
+    });
   });
 };
